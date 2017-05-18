@@ -7,6 +7,36 @@ from .exc import ErroEnderecoInvalido
 
 _ENDERECO_CAMPOS_NONE = {'nome2', 'complemento', 'telefone'}
 
+_UFS_BRASIL = {
+    'AC',
+    'AL',
+    'AM',
+    'AP',
+    'BA',
+    'CE',
+    'DF',
+    'ES',
+    'GO',
+    'MA',
+    'MG',
+    'MS',
+    'MT',
+    'PA',
+    'PB',
+    'PE',
+    'PI',
+    'PR',
+    'RJ',
+    'RN',
+    'RO',
+    'RR',
+    'RS',
+    'SC',
+    'SE',
+    'SP',
+    'TO',
+}
+
 
 @attr.s
 class Endereco(object):
@@ -42,6 +72,9 @@ class Endereco(object):
 
             if not (isinstance(atributo_valor, str) or (atributo in _ENDERECO_CAMPOS_NONE and atributo_valor is None)):
                 erros.append('{} deve ser uma str'.format(atributo))
+
+        if self.uf not in _UFS_BRASIL:
+            erros.append('UF inválida')
 
         if erros:
             raise ErroEnderecoInvalido(erros)
