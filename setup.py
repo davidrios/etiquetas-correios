@@ -23,12 +23,16 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
     packages=find_packages(exclude=['docs', 'tests']),
-    install_requires=[''],
+    install_requires=[
+        'attrs'
+    ],
+    extras_require={
+        'sigep': ['zeep']
+    },
     package_data={
         'etiquetas_correios': ['templates/**'],
     },
