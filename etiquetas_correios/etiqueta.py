@@ -23,13 +23,13 @@ class Etiqueta(object):
         data_matrix.append(self.destinatario.cep[:8])
 
         # complemento cep
-        data_matrix.append(' ' * 5)
+        data_matrix.append('{:0>5}'.format(self.destinatario.numero)[:5])
 
         # cep origem
         data_matrix.append(self.remetente.cep[:8])
 
         # complemento cep
-        data_matrix.append(' ' * 5)
+        data_matrix.append('{:0>5}'.format(self.remetente.numero)[:5])
 
         # validador cep destino
         soma_numeros_cep = sum([int(i) for i in self.destinatario.cep])
