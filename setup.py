@@ -31,7 +31,8 @@ setup(
         'attrs'
     ],
     extras_require={
-        'sigep': ['zeep']
+        'sigep': ['zeep'],
+        'gerar-html': ['jinja2'],
     },
     package_data={
         'etiquetas_correios': ['templates/**'],

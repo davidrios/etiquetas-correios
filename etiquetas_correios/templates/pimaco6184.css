@@ -1,0 +1,148 @@
+body, ul, li, div, p, h1 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 10pt;
+}
+
+@media screen {
+  html {
+    background-color: #eee;
+  }
+
+  body {
+    margin: 0 auto;
+    padding: 0 5mm;
+    width: 224mm;
+    background-color: white;
+  }
+}
+
+@media print {
+  body {
+    width: 216mm;
+  }
+}
+
+ul.etiquetas {
+  list-style-type: none;
+}
+
+ul.etiquetas > li {
+  width: 101.6mm;
+  height: 84.67mm;
+  padding: 2mm;
+  position: relative;
+  page-break-inside: avoid;
+  display: inline-block;
+}
+
+ul.etiquetas > li:nth-child(odd) {
+  margin-right: 4.266mm;
+}
+
+@media screen {
+  ul.etiquetas > li {
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+  }
+
+  ul.etiquetas > li:nth-child(6n+1), ul.etiquetas > li:nth-child(6n+2) {
+    margin-top: 17.5mm;
+  }
+
+  ul.etiquetas > li:nth-child(6n+1):before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 300mm;
+    height: 5mm;
+    top: -18mm;
+    left: -45mm;
+    background-color: #eee;
+  }
+
+  ul.etiquetas > li:nth-child(6n+0),
+  ul.etiquetas > li:nth-child(6n-1),
+  ul.etiquetas > li:last-child {
+    margin-bottom: 12.5mm;
+  }
+}
+
+.destinatario {
+  border: 1px solid black;
+  height: 54mm;
+  width: 75mm;
+  position: relative;
+}
+
+.destinatario > h1 {
+  font-size: 1em;
+  color: white;
+  text-transform: uppercase;
+  background-color: black;
+  padding: 0.1em 1em;
+  display: inline-block;
+  margin-bottom: 0.2em;
+}
+
+.destinatario > p {
+  padding: 0.05em 1em;
+}
+
+.destinatario > .cep {
+  padding: 0 1em;
+  position: absolute;
+  bottom: 0.2em;
+}
+
+.destinatario > .cep > p {
+  display: inline-block;
+}
+
+.destinatario > .cep > p.cep {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.destinatario > .cep > svg {
+  display: block;
+}
+
+.data-matrix {
+  position: absolute;
+  top: 2mm;
+  right: 2mm;
+}
+
+.remetente {
+  font-size: 0.8em;
+  margin-top: 1mm;
+}
+
+.remetente > h1 {
+  font-size: inherit;
+}
+
+.remetente > .cep {
+  margin-top: 2mm;
+}
+
+.remetente > .cep > p {
+  display: inline-block;
+}
+
+.remetente > .cep > p.cep {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+@page {
+  margin: 12.5mm 4.266mm;
+  size: Letter;
+}

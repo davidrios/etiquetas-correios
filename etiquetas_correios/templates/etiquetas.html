@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>{{ codigo_css|safe }}</style>
+  </head>
+  <body>
+    <ul class="etiquetas">
+      {% for etiqueta in etiquetas %}
+      <li>
+        <div class="destinatario">
+          <h1>Destinatário</h1>
+          <p>{{ etiqueta.destinatario.nome1 }}</p>
+          {% if etiqueta.destinatario.nome2 %}<p>{{ etiqueta.destinatario.nome2 }}</p>{% endif %}
+          <p>{{ etiqueta.destinatario.endereco_numero }}</p>
+          {% if etiqueta.destinatario.complemento %}<p>{{ etiqueta.destinatario.complemento }}</p>{% endif %}
+          <p>{{ etiqueta.destinatario.bairro }}</p>
+          <div class="cep">
+            <p class="cep">{{ etiqueta.destinatario.cep_formatado }}</p>
+            <p class="cidade">{{ etiqueta.destinatario.cidade }}-{{ etiqueta.destinatario.uf }}</p>
+            <svg class="codigo-barras-cep"
+               jsbarcode-format="code128c"
+               jsbarcode-value="{{ etiqueta.destinatario.cep }}"
+               jsbarcode-margin="0"
+               jsbarcode-displayvalue="false"
+               jsbarcode-height="70"
+               jsbarcode-width="2"></svg>
+          </div>
+        </div>
+        <div class="data-matrix">{{ renderizar_data_matrix(etiqueta.gerar_string_data_matrix())|safe }}</div>
+        <div class="remetente">
+          <h1>Remetente</h1>
+          <p>{{ etiqueta.remetente.nome1 }}</p>
+          {% if etiqueta.remetente.nome2 %}<p>{{ etiqueta.remetente.nome2 }}</p>{% endif %}
+          <p>{{ etiqueta.remetente.endereco_numero }}</p>
+          {% if etiqueta.remetente.complemento %}<p>{{ etiqueta.remetente.complemento }}</p>{% endif %}
+          <p>{{ etiqueta.remetente.bairro }}</p>
+          <div class="cep">
+            <p class="cep">{{ etiqueta.remetente.cep_formatado }}</p>
+            <p class="cidade">{{ etiqueta.remetente.cidade }}-{{ etiqueta.remetente.uf }}</p>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <script>
+      {{ codigo_js|safe }}
+      JsBarcode('.codigo-barras-cep').init();
+    </script>
+  </body>
+</html>
