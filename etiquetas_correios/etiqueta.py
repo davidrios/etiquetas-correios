@@ -10,7 +10,7 @@ from .endereco import Endereco
 class Etiqueta(object):
     remetente = attr.ib(validator=attr.validators.instance_of(Endereco))
     destinatario = attr.ib(validator=attr.validators.instance_of(Endereco))
-    codigo_do_servico = attr.ib(validator=attr.validators.instance_of(str))
+    codigo_do_servico = attr.ib(validator=attr.validators.instance_of(int))
     valor_declarado = attr.ib(default=Decimal(0), validator=attr.validators.instance_of(Decimal))
 
     def gerar_string_data_matrix(self):
@@ -23,13 +23,19 @@ class Etiqueta(object):
         data_matrix.append(self.destinatario.cep[:8])
 
         # complemento cep
-        data_matrix.append('{:0>5}'.format(self.destinatario.numero)[:5])
+        try:
+            data_matrix.append('{:0>5}'.format(int(self.destinatario.numero))[:5])
+        except ValueError:
+            data_matrix.append('0' * 5)
 
         # cep origem
         data_matrix.append(self.remetente.cep[:8])
 
         # complemento cep
-        data_matrix.append('{:0>5}'.format(self.remetente.numero)[:5])
+        try:
+            data_matrix.append('{:0>5}'.format(int(self.remetente.numero))[:5])
+        except ValueError:
+            data_matrix.append('0' * 5)
 
         # validador cep destino
         soma_numeros_cep = sum([int(i) for i in self.destinatario.cep])
@@ -54,13 +60,16 @@ class Etiqueta(object):
         data_matrix.append('0' * 10)
 
         # código de serviço
-        data_matrix.append('{:0>5}'.format(int(self.codigo_do_servico))[:5])
+        data_matrix.append('{:0>5}'.format(self.codigo_do_servico)[:5])
 
         # agrupamento
         data_matrix.append('0' * 2)
 
         # numero logradouro
-        data_matrix.append('{:0>5}'.format(self.destinatario.numero)[:5])
+        try:
+            data_matrix.append('{:0>5}'.format(int(self.destinatario.numero))[:5])
+        except ValueError:
+            data_matrix.append('0' * 5)
 
         # complemento logradouro
         data_matrix.append('{:<20}'.format(self.destinatario.complemento or '')[:20])

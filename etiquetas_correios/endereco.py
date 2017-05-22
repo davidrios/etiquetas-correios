@@ -42,7 +42,7 @@ _UFS_BRASIL = {
 class Endereco(object):
     nome1 = attr.ib(validator=attr.validators.instance_of(str))
     cep = attr.ib()
-    numero = attr.ib(validator=attr.validators.instance_of(int))
+    numero = attr.ib(validator=attr.validators.instance_of(str))
     endereco = attr.ib(default=None)
     complemento = attr.ib(default=None)
     bairro = attr.ib(default=None)
@@ -56,6 +56,14 @@ class Endereco(object):
         if valor is None or re.match(r'^\d{8}$', valor) is None:
             raise ValueError('CEP inválido')
 
+    @property
+    def endereco_numero(self):
+        return '{}, {}'.format(self.endereco, self.numero)
+
+    @property
+    def cep_formatado(self):
+        return '{}-{}'.format(self.cep[:5], self.cep[5:])
+
     def validar(self):
         erros = []
 
@@ -64,10 +72,7 @@ class Endereco(object):
         except Exception as ex:
             erros.append(str(ex))
 
-        if not isinstance(self.numero, int):
-            erros.append('Número inválido')
-
-        for atributo in ('nome1', 'nome2', 'endereco', 'complemento', 'bairro', 'cidade', 'uf', 'telefone'):
+        for atributo in ('nome1', 'nome2', 'numero', 'endereco', 'complemento', 'bairro', 'cidade', 'uf', 'telefone'):
             atributo_valor = getattr(self, atributo)
 
             if not (isinstance(atributo_valor, str) or (atributo in _ENDERECO_CAMPOS_NONE and atributo_valor is None)):
