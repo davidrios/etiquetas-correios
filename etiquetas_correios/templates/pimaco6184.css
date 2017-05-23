@@ -16,15 +16,8 @@ body {
 
   body {
     margin: 0 auto;
-    padding: 0 5mm;
-    width: 224mm;
     background-color: white;
-  }
-}
-
-@media print {
-  body {
-    width: 216mm;
+    width: 215.9mm;
   }
 }
 
@@ -34,15 +27,22 @@ ul.etiquetas {
 
 ul.etiquetas > li {
   width: 101.6mm;
-  height: 84.67mm;
-  padding: 2mm;
+  height: 84.4mm;
+  padding: 2mm 2.5mm;
   position: relative;
   page-break-inside: avoid;
   display: inline-block;
 }
 
 ul.etiquetas > li:nth-child(odd) {
-  margin-right: 4.266mm;
+  margin-right: 4.6mm;
+  margin-left: 4mm;
+}
+
+@media print {
+  ul.etiquetas > li:nth-child(6n+1), ul.etiquetas > li:nth-child(6n+2) {
+    margin-top: 15.5mm;
+  }
 }
 
 @media screen {
@@ -52,7 +52,7 @@ ul.etiquetas > li:nth-child(odd) {
   }
 
   ul.etiquetas > li:nth-child(6n+1), ul.etiquetas > li:nth-child(6n+2) {
-    margin-top: 17.5mm;
+    margin-top: 17.2mm;
   }
 
   ul.etiquetas > li:nth-child(6n+1):before {
@@ -61,7 +61,7 @@ ul.etiquetas > li:nth-child(odd) {
     position: absolute;
     width: 300mm;
     height: 5mm;
-    top: -18mm;
+    top: -17.2mm;
     left: -45mm;
     background-color: #eee;
   }
@@ -69,14 +69,14 @@ ul.etiquetas > li:nth-child(odd) {
   ul.etiquetas > li:nth-child(6n+0),
   ul.etiquetas > li:nth-child(6n-1),
   ul.etiquetas > li:last-child {
-    margin-bottom: 12.5mm;
+    margin-bottom: 12.2mm;
   }
 }
 
 .destinatario {
   border: 1px solid black;
   height: 54mm;
-  width: 75mm;
+  width: 72mm;
   position: relative;
 }
 
@@ -116,7 +116,7 @@ ul.etiquetas > li:nth-child(odd) {
 .data-matrix {
   position: absolute;
   top: 2mm;
-  right: 2mm;
+  right: 2.5mm;
 }
 
 .remetente {
@@ -140,9 +140,4 @@ ul.etiquetas > li:nth-child(odd) {
   font-size: 1.2em;
   font-weight: bold;
   margin-right: 0.5em;
-}
-
-@page {
-  margin: 12.5mm 4.266mm;
-  size: Letter;
 }
