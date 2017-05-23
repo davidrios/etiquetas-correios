@@ -1,4 +1,7 @@
-from zeep import Client
+try:
+    from zeep import Client
+except ImportError:
+    raise Exception('Para usar a consulta SIGEP você deve instalar a dependência adicional [sigep].')
 
 
 _URL_SIGEP = 'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'

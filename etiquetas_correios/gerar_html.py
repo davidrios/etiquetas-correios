@@ -1,7 +1,10 @@
 from codecs import open
 from os import path
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+try:
+    from jinja2 import Environment, PackageLoader, select_autoescape
+except ImportError:
+    raise Exception('Para usar a geração de HTML você deve instalar a dependência adicional [gerar-html].')
 
 MY_DIR = path.dirname(__file__)
 
