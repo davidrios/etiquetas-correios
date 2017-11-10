@@ -28,11 +28,11 @@ setup(
     ],
     packages=find_packages(exclude=['docs', 'tests']),
     install_requires=[
-        'attrs'
+        'attrs',
     ],
     extras_require={
         'sigep': ['zeep'],
-        'gerar-html': ['jinja2'],
+        'gerar-pdf': ['jinja2', 'weasyprint'],
     },
     package_data={
         'etiquetas_correios': ['templates/**'],
