@@ -20,5 +20,5 @@ def renderizar_svg(dados):
 
 
 def renderizar_png(dados):
-    png_data = check_output('dmtxwrite -fPNG -r300 -m1 -d2', shell=True, input=dados.encode('utf8'))
+    png_data = check_output('dmtxwrite -fPNG -r600 -m1 -d2', shell=True, input=dados.encode('utf8'))
     return '<img src="data:image/png;base64,{}" />'.format(b64encode(png_data).decode('ascii'))
