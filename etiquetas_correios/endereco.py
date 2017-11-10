@@ -42,12 +42,12 @@ _UFS_BRASIL = {
 class Endereco(object):
     nome1 = attr.ib(validator=attr.validators.instance_of(str))
     cep = attr.ib()
+    endereco = attr.ib(validator=attr.validators.instance_of(str))
     numero = attr.ib(validator=attr.validators.instance_of(str))
-    endereco = attr.ib(default=None)
+    bairro = attr.ib(validator=attr.validators.instance_of(str))
+    cidade = attr.ib(validator=attr.validators.instance_of(str))
+    uf = attr.ib(validator=attr.validators.instance_of(str))
     complemento = attr.ib(default=None)
-    bairro = attr.ib(default=None)
-    cidade = attr.ib(default=None)
-    uf = attr.ib(default=None)
     telefone = attr.ib(default=None)
     nome2 = attr.ib(default=None)
 
